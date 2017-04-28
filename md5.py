@@ -43,6 +43,7 @@ class md5:
         # Append magic number together ( answer )
         return "".join(['{0:0{1}x}'.format((x >> (i*8)) & 0xFF,2) for x in self.hashs for i in xrange(4)])
     def LEA(self,hashed,message,length,append):
+        length += len(message)
         _append = append # origin append string
         self.hashs = [sum([int(hashed[i+j:i+j+2],16) << (j*4) for j in xrange(0,8,2)]) for i in xrange(0,len(hashed),8)]
         pad = self.padding(length)
@@ -55,7 +56,13 @@ class md5:
  
 if __name__ == '__main__':
     m = md5()
-    if len(sys.argv) != 2:
+    if not (len(sys.argv) == 2 or (len(sys.argv) == 6 and sys.argv[1] == "-LEA")):
         print "usage: python md5.py (value)"
+        print "       python md5.py -LEA <hash value> <origin message> <salt length> <append message>"
         exit(1)
-    print m.hash(sys.argv[1])
+    if sys.argv[1] == "-LEA":
+        answer = m.LEA(sys.argv[2],sys.argv[3],int(sys.argv[4]),sys.argv[5])
+        print "modified message : ",repr(answer[0])
+        print "modified hash value : ",answer[1]
+    else:
+        print m.hash(sys.argv[1])
