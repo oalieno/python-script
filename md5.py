@@ -57,7 +57,7 @@ class md5:
 if __name__ == '__main__':
     m = md5()
     if not (len(sys.argv) == 2 or (len(sys.argv) == 6 and sys.argv[1] == "-LEA")):
-        print "usage: python md5.py (value)"
+        print "usage: python md5.py <value>"
         print "       python md5.py -LEA <hash value> <origin message> <salt length> <append message>"
         exit(1)
     if sys.argv[1] == "-LEA":
