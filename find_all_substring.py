@@ -1,10 +1,9 @@
-'''
-Purpose : find all the substring of the text into a list
-Algorithm : KMP algorithm
-Example : findAllSubstring("hello and hello and hi there", "hello") -> [0, 10]
-'''
-
-def findAllSubstring(text,pattern):
+def find_all_substring(text,pattern):
+    '''
+    Purpose : find all the substring of the text into a list
+    Algorithm : KMP algorithm
+    Example : find_all_substring("hello and hello and hi there", "hello") -> [0, 10]
+    '''
     ans = []
     dp = [0]*len(pattern)
     for i in xrange(1,len(pattern)):
