@@ -13,6 +13,8 @@ example :
 ```python
 find_all_substring("hello and hello and hi there", "hello")
 # [0, 10]
+# the first hello start from index 0
+# the second hello start from index 10
 ```
 
 ## md5
